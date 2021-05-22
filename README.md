@@ -54,7 +54,11 @@ ingress:
 ```
 cloudflared service install
 systemctl enable cloudflared.service
+# disable auto-update since there is no mipsle build from cloudflare
 systemctl disable cloudflared-update.service
 systemctl disable cloudflared-update.timer
+# start service (or restart if already started)
 systemctl start cloudflared.service
+# check if daemon is running
+ps afux | grep cloudflared
 ```
