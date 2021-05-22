@@ -62,3 +62,9 @@ systemctl start cloudflared.service
 # check if daemon is running
 ps afux | grep cloudflared
 ```
+
+* create dns entries:
+
+```
+cloudflared tunnel route dns UUID YOUR-DOMAIN
+``` 
