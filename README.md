@@ -39,16 +39,22 @@ vi /etc/cloudflared/config.yml
 * /etc/cloudflared/config.yml:
 
 ```
+#UUID is from output before
 tunnel: UUID
 credentials-file: /root/.cloudflared/UUID.json
 
 ingress:
   - hostname: HOSTNAME
     service: https://INTERNAL-SERVICE-IP-OR-DNS-NAME
+  - service: http_status:404
 ```
 
 * on the router:
 
 ```
 cloudflared service install
+systemctl enable cloudflared.service
+systemctl disable cloudflared-update.service
+systemctl disable cloudflared-update.timer
+systemctl start cloudflared.service
 ```
